@@ -53,18 +53,19 @@ The bot will then be registered for you automatically on startup.
  
 The following properties can be configured (none are mandatory):
 
-| property | description | available since |
-| -------- | ----------- | --------------- |
-| telegram.external-url | external base url for the webhook | 0.15 |
-| telegram.internal-url | internal base url for the webhook | 0.15 |
-| telegram.key-store | keystore for the server | 0.15 |
-| telegram.key-store-password | keystore password for the server | 0.15 |
-| telegram.path-to-certificate | full path for .pem public certificate keys | 0.15 |
-| telegram.proxy.type | type of proxy (NO_PROXY, HTTP, SOCKS4, SOCKS5) | 0.22 |
-| telegram.proxy.host | host of the proxy | 0.22 |
-| telegram.proxy.port | port of the proxy | 0.22 |
-| telegram.proxy.user | username for proxy authentication | 0.22 |
-| telegram.proxy.password | password for proxy authentication | 0.22 |
+| property                     | description                                    | available since |
+|------------------------------|------------------------------------------------|-----------------|
+| telegram.external-url        | external base url for the webhook              | 0.15            |
+| telegram.internal-url        | internal base url for the webhook              | 0.15            |
+| telegram.key-store           | keystore for the server                        | 0.15            |
+| telegram.key-store-password  | keystore password for the server               | 0.15            |
+| telegram.path-to-certificate | full path for .pem public certificate keys     | 0.15            |
+| telegram.local-bot-url       | domain of local bot api (yourdomain.com/bot)   | 0.27            |
+| telegram.proxy.type          | type of proxy (NO_PROXY, HTTP, SOCKS4, SOCKS5) | 0.22            |
+| telegram.proxy.host          | host of the proxy                              | 0.22            |
+| telegram.proxy.port          | port of the proxy                              | 0.22            |
+| telegram.proxy.user          | username for proxy authentication              | 0.22            |
+| telegram.proxy.password      | password for proxy authentication              | 0.22            |
 
 ### Webhook support
 
@@ -82,6 +83,27 @@ For proxy support you need to set all of the following properties:
 * `telegram.proxy.port`
 
 To enable authentication for a proxy you need to set `telegram.proxy.user` and `telegram.proxy.password`.
+
+
+### Local Bot Api support
+For local bot api support you need to set following properties:
+* `telegram.local-bot-url`
+
+#### Notice
+To enable Proxy or Local Bot Api support you need to have a constructor with DefaultBotOptions as parameter :
+
+```java
+import org.telegram.telegrambots.bots.DefaultBotOptions;
+
+@Component
+public class Bot extends TelegramLongPollingBot {
+
+    public Bot(DefaultBotOptions options) {
+        super(options);
+    }
+...
+} 
+```
 
 ### General
 
